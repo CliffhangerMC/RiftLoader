@@ -13,7 +13,7 @@
   "mainClass": "net.minecraft.launchwrapper.Launch",
   "libraries": [
     {
-      "name": "com.github.pkstDev:Rift:${build}",
+      "name": "com.github.pkstDev:RiftLoader:${build}",
       "url": "https://www.jitpack.io/"
     },
     {
