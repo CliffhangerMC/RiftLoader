@@ -1,1 +1,0 @@
-MD: net/optifine/CustomColors/getFluidColor (Lnet/minecraft/world/IWorldReader;Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/util/math/BlockPos;Lnet/optifine/render/RenderEnv;)I net/optifine/CustomColors/getFluidColor (Laye;Lblc;Lel;Lnet/optifine/render/RenderEnv;)I

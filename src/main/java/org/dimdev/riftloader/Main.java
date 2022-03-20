@@ -14,14 +14,13 @@ import java.util.*;
 
 public class Main {
     private static final String[] LIBRARIES = {
-            "https://www.dimdev.org/maven/org/dimdev/mixin/0.7.11-SNAPSHOT/mixin-0.7.11-SNAPSHOT.jar",
+            "https://repo.spongepowered.org/repository/maven-public/org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar",
             "https://repo1.maven.org/maven2/org/ow2/asm/asm/6.2/asm-6.2.jar",
             "https://repo1.maven.org/maven2/org/ow2/asm/asm-commons/6.2/asm-commons-6.2.jar",
             "https://repo1.maven.org/maven2/org/ow2/asm/asm-tree/6.2/asm-tree-6.2.jar",
-            "https://libraries.minecraft.net/net/minecraft/launchwrapper/1.12/launchwrapper-1.12.jar"
+            "https://maven.enaium.cn/cn/enaium/launchwrapper/1.3.0/launchwrapper-1.3.0.jar"
     };
-    public static final String VANILLA_SERVER = "https://launcher.mojang.com/v1/objects/3737db93722a9e39eeada7c27e7aca28b144ffa7/server.jar";
-    // public static final String SPIGOT_SERVER = "https://cdn.getbukkit.org/spigot/spigot-1.13.jar";
+    public static final String VANILLA_SERVER = "https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar";
 
     public static void main(String... args) throws Throwable {
         if (args.length == 0) {
@@ -112,13 +111,13 @@ public class Main {
             }
 
             // Copy the version json
-            File versionJson = new File(minecraftFolder, "versions/1.13.2-rift-@VERSION@/1.13.2-rift-@VERSION@.json");
+            File versionJson = new File(minecraftFolder, "versions/1.18.2-rift-@VERSION@/1.18.2-rift-@VERSION@.json");
             versionJson.getParentFile().mkdirs();
             Files.copy(Main.class.getResourceAsStream("/profile.json"), versionJson.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-            File fakeJar = new File(minecraftFolder, "versions/1.13.2-rift-@VERSION@/1.13.2-rift-@VERSION@.jar");
+            File fakeJar = new File(minecraftFolder, "versions/1.18.2-rift-@VERSION@/1.18.2-rift-@VERSION@.jar");
             if (!fakeJar.exists()) {
-            	File maybeRealJar = new File(minecraftFolder, "versions/1.13.2/1.13.2.jar");
+            	File maybeRealJar = new File(minecraftFolder, "versions/1.18.2/1.18.2.jar");
             	if (maybeRealJar.exists()) {
             		Files.copy(maybeRealJar.toPath(), fakeJar.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 } else {
@@ -177,7 +176,7 @@ public class Main {
             }
 
             JOptionPane.showMessageDialog(null,
-                    "Rift @VERSION@ for Minecraft 1.13.2 has been successfully installed" +
+                    "Rift @VERSION@ for Minecraft 1.18.2 has been successfully installed" +
                     (ask ? " to\n" + minecraftFolder.getAbsolutePath() + "\n" : "!\n") +
                     "\n" +
                     "It is available in the dropdown menu of the vanilla Minecraft launcher.\n" +

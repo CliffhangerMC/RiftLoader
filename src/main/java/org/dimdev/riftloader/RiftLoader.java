@@ -98,7 +98,7 @@ public class RiftLoader {
         // Load jar mods
         log.info("Searching for mods in " + modsDir);
         modsDir.mkdirs();
-        for (File file : modsDir.listFiles()) {
+        for (File file : Objects.requireNonNull(modsDir.listFiles())) {
             if (!file.getName().endsWith(".jar")) continue;
 
             try (JarFile jar = new JarFile(file)) {
@@ -109,17 +109,6 @@ public class RiftLoader {
                 if (entry != null) {
                     loadModFromJson(jar.getInputStream(entry), file);
                     continue;
-                }
-
-                if (jar.getJarEntry("optifine/OptiFineClassTransformer.class") != null) {
-                    ModInfo mod = new ModInfo();
-                    mod.source = file;
-                    mod.id = "optifine";
-                    mod.name = "OptiFine";
-                    mod.authors.add("sp614x");
-                    mod.listeners.add(new ModInfo.Listener("org.dimdev.riftloader.OptifineLoader"));
-                    modInfoMap.put("optifine", mod);
-                    log.info("Loaded mod 'optifine'");
                 }
 
                 log.debug("Skipping " + file + " since it does not contain riftmod.json");
