@@ -4,7 +4,7 @@ Rift is a lightweight modding API, library, and mod loader for Minecraft 1.13 an
 This fork contains the port of the loader part of Rift to the modern Minecraft versions(1.13 and beyond). For Minecraft 1.13 see [**here**](https://github.com/DimensionalDevelopment/Rift).
 
 ### Using the Minecraft Launcher
-Currently, Rift does not have its own installer (The previous one is deleted). However, you can edit a profile by yourself.
+Currently, Rift Loader has an [installer](https://github.com/CliffhangerMC/RiftInstaller) for the official launcher. You can edit a profile by yourself anyway.
 
 Here is an example:
 ```json
