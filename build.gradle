@@ -1,11 +1,12 @@
 buildscript {
     repositories {
         maven { url 'https://maven.enaium.cn' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
 
     dependencies {
-        classpath 'cn.enaium.humblemc:HumbleGradle:1.0.0'
+        classpath 'cn.enaium.humblemc:HumbleGradle:1.1.0'
     }
 }
 
@@ -20,6 +21,11 @@ def asmVersion = '9.2'
 
 def releaseTime() {
     return new Date().format("yyyyMMdd-HHmm", TimeZone.getTimeZone("GMT+08:00"))
+}
+
+repositories {
+    mavenCentral()
+    maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
 }
 
 dependencies {
