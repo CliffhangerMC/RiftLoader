@@ -13,13 +13,13 @@ apply plugin: 'cn.enaium.humblemc.gradle'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
-group 'org.dimdev.riftloader'
+group 'org.dimdev'
 version '2.0.0-' + releaseTime()
 
 def asmVersion = '9.2'
 
 def releaseTime() {
-    return new Date().format("yyyyMMddHHmm", TimeZone.getTimeZone("GMT+08:00"))
+    return new Date().format("yyyyMMdd-HHmm", TimeZone.getTimeZone("GMT+08:00"))
 }
 
 dependencies {
@@ -34,17 +34,22 @@ dependencies {
 
 humble {
     minecraft {
-        version = '1.18.2'
+        version = '1.16.5'
         tweakClasses = ['org.dimdev.riftloader.launch.RiftLoaderTweaker']
     }
 }
 
-targetCompatibility = sourceCompatibility = JavaVersion.VERSION_17
-
-task sourcesJar(type: Jar) {
-    from sourceSets.main.allJava
-    archiveClassifier = 'sources'
+java {
+	withSourcesJar()
 }
+
+jar {
+	from("LICENSE") {
+		rename { "${it}_${project.archivesBaseName}"}
+	}
+}
+
+targetCompatibility = sourceCompatibility = JavaVersion.VERSION_1_8
 
 publishing {
     repositories {
@@ -59,10 +64,9 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId project.group
-            artifactId project.name
             version project.version
+
             from components.java
-            artifact sourcesJar
         }
     }
 }
