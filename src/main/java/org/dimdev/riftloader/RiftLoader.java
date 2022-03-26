@@ -12,6 +12,8 @@ import org.dimdev.riftloader.listener.Instantiator;
 import org.dimdev.utils.InstanceListMap;
 import org.dimdev.utils.InstanceMap;
 import org.dimdev.utils.ReflectionUtils;
+import org.spongepowered.asm.launch.MixinBootstrap;
+import org.spongepowered.asm.mixin.Mixins;
 
 import java.io.File;
 import java.io.IOException;
@@ -184,6 +186,16 @@ public class RiftLoader {
         for (InitializationListener listener : getListeners(InitializationListener.class)) {
             listener.onInitialization();
         }
+
+        // Load the mixins
+        MixinBootstrap.init();
+        List<String> mixins = new ArrayList<>();
+        for (ModInfo modInfo: modInfoMap.values()) {
+            if (modInfo.mixin != null) {
+                mixins.add(modInfo.mixin);
+            }
+        }
+        mixins.forEach(Mixins::addConfiguration);
 
         log.info("Done initializing mods");
     }
